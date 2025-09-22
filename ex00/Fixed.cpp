@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FIxed.cpp                                          :+:      :+:    :+:   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabou-ha <mabou-ha>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:52:05 by mabou-ha          #+#    #+#             */
-/*   Updated: 2025/09/13 20:30:37 by mabou-ha         ###   ########.fr       */
+/*   Updated: 2025/09/20 02:26:18 by mabou-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ Fixed& Fixed::operator=(const Fixed& obj)
 	return *this;
 }
 
-Fixed::~Fixed() {}
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
 
 int Fixed::getRawBits() const
 {
