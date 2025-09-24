@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabou-ha <mabou-ha>                        +#+  +:+       +#+        */
+/*   By: mabou-ha <mabou-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/13 19:52:05 by mabou-ha          #+#    #+#             */
-/*   Updated: 2025/09/22 20:28:00 by mabou-ha         ###   ########.fr       */
+/*   Updated: 2025/09/24 12:12:20 by mabou-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,12 @@ std::ostream& operator<<(std::ostream& os, const Fixed& f)
 
 bool Fixed::operator>(const Fixed& rhs) const
 {
-	return raw_ >  rhs.raw_;
+	return raw_ > rhs.raw_;
 }
 
 bool Fixed::operator<(const Fixed& rhs) const
 {
-	return raw_ <  rhs.raw_;
+	return raw_ < rhs.raw_;
 }
 
 bool Fixed::operator>=(const Fixed& rhs) const
@@ -109,25 +109,74 @@ bool Fixed::operator!=(const Fixed& rhs) const
 	return raw_ != rhs.raw_;
 }
 
-Fixed& Fixed::operator+(const Fixed& obj)
+Fixed Fixed::operator+(const Fixed& obj) const
 {
 	Fixed result;
 	result.raw_ = this->raw_ + obj.raw_;
 	return result;
 }
-Fixed& Fixed::operator-(const Fixed& obj)
+
+Fixed Fixed::operator-(const Fixed& obj) const
 {
 	Fixed result;
 	result.raw_ = this->raw_ - obj.raw_;
 	return result;
 }
-Fixed& Fixed::operator*(const Fixed& obj)
+
+Fixed Fixed::operator*(const Fixed& obj) const
 {
 	Fixed result (this->toFloat() * obj.toFloat());
 	return result;
 }
-Fixed& Fixed::operator/(const Fixed& obj)
+
+Fixed Fixed::operator/(const Fixed& obj) const
 {
 	Fixed result (this->toFloat() / obj.toFloat());
 	return result;
+}
+
+Fixed& Fixed::operator++()
+{
+	raw_ += (1 << fractBits);
+	return *this;
+}
+
+Fixed& Fixed::operator--()
+{
+	raw_ -= (1 << fractBits);
+	return *this;
+}
+
+Fixed Fixed::operator++(int)
+{
+	Fixed prev(*this);
+	raw_ += (1 << fractBits);
+	return prev;
+}
+
+Fixed Fixed::operator--(int)
+{
+	Fixed prev(*this);
+	raw_ -= (1 << fractBits);
+	return prev;
+}
+
+Fixed& Fixed::min(Fixed& a, Fixed& b)
+{
+	return (a < b) ? a : b;
+}
+
+const Fixed& Fixed::min(const Fixed& a, const Fixed& b)
+{
+	return (a < b) ? a : b;
+}
+
+Fixed& Fixed::max(Fixed& a, Fixed& b)
+{
+	return (a > b) ? a : b;
+}
+
+const Fixed& Fixed::max(const Fixed& a, const Fixed& b)
+{
+	return (a > b) ? a : b;
 }
