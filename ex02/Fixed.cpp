@@ -137,27 +137,27 @@ Fixed Fixed::operator/(const Fixed& obj) const
 
 Fixed& Fixed::operator++()
 {
-	raw_ += (1 << fractBits);
+	raw_ += 1;
 	return *this;
 }
 
 Fixed& Fixed::operator--()
 {
-	raw_ -= (1 << fractBits);
+	raw_ -= 1;
 	return *this;
 }
 
 Fixed Fixed::operator++(int)
 {
 	Fixed prev(*this);
-	raw_ += (1 << fractBits);
+	raw_ += 1;
 	return prev;
 }
 
 Fixed Fixed::operator--(int)
 {
 	Fixed prev(*this);
-	raw_ -= (1 << fractBits);
+	raw_ -= 1;
 	return prev;
 }
 
